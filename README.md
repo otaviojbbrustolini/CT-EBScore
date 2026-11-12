@@ -55,14 +55,14 @@ Assumimos uma distribuição multinomial condicional:
 
 $$
 \mathbf{x}_g\mid\boldsymbol{\theta}_g
-\sim\operatorname{Multinomial}(n_g,\boldsymbol{\theta}_g),
+\sim\mathrm{Multinomial}(n_g,\boldsymbol{\theta}_g),
 $$
 
 em que $\boldsymbol{\theta}_g=(\theta_{Y,g},\theta_{N,g},\theta_{U,g})$ é o vetor de probabilidades latentes para `yes`, `no` e `unknown`, com soma igual a 1. O prior compartilhado é:
 
 $$
 \boldsymbol{\theta}_g\sim
-\operatorname{Dirichlet}(\alpha_Y,\alpha_N,\alpha_U).
+\mathrm{Dirichlet}(\alpha_Y,\alpha_N,\alpha_U).
 $$
 
 Ao integrar $\boldsymbol{\theta}_g$, obtemos a distribuição marginal Dirichlet–Multinomial. Os hiperparâmetros positivos $\boldsymbol{\alpha}$ são estimados **por máxima verossimilhança marginal**, usando os genes disponíveis:
@@ -83,7 +83,7 @@ Pela conjugação Dirichlet–Multinomial:
 
 $$
 \boldsymbol{\theta}_g\mid\mathbf{x}_g\sim
-\operatorname{Dirichlet}
+\mathrm{Dirichlet}
 (Y_g+\alpha_Y,N_g+\alpha_N,U_g+\alpha_U).
 $$
 
@@ -107,14 +107,14 @@ Pela propriedade de agregação da Dirichlet:
 
 $$
 Q_g\mid\mathbf{x}_g\sim
-\operatorname{Beta}(Y_g+\alpha_Y,N_g+\alpha_N).
+\mathrm{Beta}(Y_g+\alpha_Y,N_g+\alpha_N).
 $$
 
 Portanto, o **CT-EBScore** é a média posterior de $Q_g$:
 
 $$
 \boxed{
-\operatorname{CT\text{-}EBScore}_g
+\mathrm{CTScore}_g
 =E(Q_g\mid\mathbf{x}_g)
 =\frac{Y_g+\alpha_Y}
 {Y_g+N_g+\alpha_Y+\alpha_N}
@@ -130,7 +130,7 @@ Genes sem classificações conclusivas ($Y_g+N_g=0$) recebem a média a priori $
 Denotando $a_g=Y_g+\alpha_Y$ e $b_g=N_g+\alpha_N$, a distribuição Beta posterior fornece:
 
 $$
-P(Q_g>t\mid\mathbf{x}_g)=1-F_{\operatorname{Beta}(a_g,b_g)}(t),
+P(Q_g>t\mid\mathbf{x}_g)=1-F_{\mathrm{Beta}(a_g,b_g)}(t),
 \qquad t\in\{0.5,0.8\}.
 $$
 
@@ -161,7 +161,7 @@ O vetor de médias do prior foi $(0,002371786;\ 0,074265647;\ 0,923362567)$. A m
 Para esse prior específico, a fórmula torna-se:
 
 $$
-\operatorname{CT\text{-}EBScore}_g=
+\mathrm{CTScore}_g=
 \frac{Y_g+0.05097322}{Y_g+N_g+1.64705284}.
 $$
 
